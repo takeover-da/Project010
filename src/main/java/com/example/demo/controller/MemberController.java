@@ -45,7 +45,7 @@ public class MemberController {
 		
 		if(result) {
 			// 등록에 성공했으면 목록화면으로 이동
-			return "redirect:/member/list";
+			return "redirect:/";  //수정
 			
 		} else {
 			// 등록에 실패했으면 다시 회원가입폼으로 이동하면서
@@ -53,7 +53,7 @@ public class MemberController {
 			
 			redirectAttributes.addFlashAttribute("msg", "아이디가 중복되어 등록에 실패했습니다.");
 			
-			return "redirect:/member/register";
+			return "redirect:/register";  //수정
 		}
 	}
 	
