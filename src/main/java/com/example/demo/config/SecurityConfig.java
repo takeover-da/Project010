@@ -32,10 +32,19 @@ public class SecurityConfig {
 			.requestMatchers("/member/*").hasRole("ADMIN");
 		
 		// 로그인 폼 화면 설정
-		http.formLogin();
+		// 로그인화면과 로그인 처리 주소 설정
+		// 로그인 성공시 이동할 주소 설정
+		http.formLogin()
+						.loginPage("/customlogin")
+						.loginProcessingUrl("/login")
+						.successHandler((request, response, authentication)->{
+									// 로그인 성공시 메인화면으로 이동
+									response.sendRedirect("/");
+								});
 		
 		// 로그아웃 설정
 		http.logout();
+		
 		// csrf 설정 (get외에 post, put, delete 허용)
 //		http.csrf();
 		http.csrf().disable();

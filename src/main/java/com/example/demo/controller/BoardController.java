@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -50,7 +52,14 @@ public class BoardController {
     // 폼데이터를 수집할 때는 어노테이션 없음
     
     // RedirectAttributes: 리다이렉트할때 데이터를 전달하는 객체(모델)
-    public String registerPost(BoardDTO dto, RedirectAttributes redirectAttributes) {
+    // 매개변수에 Principal를 선언하면 스프링 컨테이너에서 빈을 꺼내서 주입함
+    public String registerPost(BoardDTO dto, RedirectAttributes redirectAttributes, Principal principal) {
+    	
+    	// 로그인한 사람의 아이디 꺼내기(Name은 id)
+    	String id = principal.getName();
+    	
+    	// DTO에서 작성자 업데이트
+    	dto.setWriter(id);
     	
     	// 화면에서 전달한 폼데이터를 받아서 데이터베이스에 저장
     	// 그리고 새로운 게시물번호를 반환받음

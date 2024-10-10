@@ -90,8 +90,12 @@
 			comment_div.innerHTML = '';
 			
 			// 리스트 안에 있는 요소를 하나씩 꺼내서 태그를 생성
-    		for(comment of list) {
-		    			 
+    		for(i in list) {
+    			
+    			let comment = list[i];
+    			
+    			console.log(i, comment);
+    					    			 
     			// 작성자 span 태그 생성
                 let writerSpan = document.createElement('span');
 	    			 
@@ -121,7 +125,7 @@
                 	removeComment(comment.commentNo);
                 });
                 
-                deleteLink.textContent = '삭제';
+                deleteLink.textContent = '삭제' + comment.commentNo;
                 
                 // 줄바꿈 태그 생성
                 let lineBreak = document.createElement('br');

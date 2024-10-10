@@ -14,4 +14,11 @@ public class HomeController {
     	return "/home/main";
     }
     
+    // 커스텀 로그인 화면을 반환하는 메소드
+    @GetMapping("/customlogin")
+    public String login() {
+    	
+    	return "home/login";
+    }
+    
 }
